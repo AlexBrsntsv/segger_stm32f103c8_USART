@@ -48,7 +48,7 @@
       Name="Debug"
       c_include_files=""
       c_include_files_c_only=""
-      c_preprocessor_definitions="STM32F103xB"
+      c_preprocessor_definitions="STM32F103xB;__NO_SYSTEM_INIT"
       c_user_include_directories="$(STM32CubeF1_DIR)/Drivers/STM32F1xx_HAL_Driver/Inc;$(STM32CubeF1_DIR)/Drivers/CMSIS/Device/ST/STM32F1xx/Include;$(ProjectDir)/Include"
       c_user_include_directories_c_only=""
       gcc_c_language_standard="c99"
@@ -64,6 +64,7 @@
       </file>
     </folder>
     <folder Name="Include">
+      <file file_name="Include/hardware.h" />
       <file file_name="Include/stm32f1xx_hal_conf.h" />
       <file file_name="Include/stm32f1xx_it.h" />
     </folder>
@@ -74,6 +75,7 @@
     </folder>
     <folder Name="Source Files">
       <configuration Name="Common" filter="c;cpp;cxx;cc;h;s;asm;inc" />
+      <file file_name="Source/hardware.c" />
       <file file_name="Source/main.c" />
       <file file_name="Source/stm32f1xx_it.c" />
     </folder>
