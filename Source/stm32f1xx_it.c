@@ -23,6 +23,10 @@
 //#include "main.h"
 #include "stm32f1xx_it.h"
 #include "stm32f1xx_hal.h"
+#include "hardware.h"
+
+extern void (*DMA1_TransmitComplete_Callback) (void);
+extern void (*DMA1_ReceiveComplete_Callback) (void);
    
 /** @addtogroup STM32F1xx_HAL_Examples
   * @{
@@ -140,6 +144,48 @@ void PendSV_Handler(void)
 void SysTick_Handler(void)
 {
   HAL_IncTick();
+}
+
+/**
+  * @brief  This function handles DMA1 interrupt request.
+  * @param  None
+  * @retval None
+  */
+void DMA1_Channel7_IRQHandler(void)
+{
+
+  if(LL_DMA_IsActiveFlag_TC7(DMA1))
+  {
+    LL_DMA_ClearFlag_GI7(DMA1);
+    /* Call function Transmission complete Callback */
+    (*DMA1_TransmitComplete_Callback)();
+  }
+  else if(LL_DMA_IsActiveFlag_TE7(DMA1))
+  {
+    /* Call Error function */
+    //USART_TransferError_Callback();
+  }
+}
+
+/**
+  * @brief  This function handles DMA1 interrupt request.
+  * @param  None
+  * @retval None
+  */
+void DMA1_Channel6_IRQHandler(void)
+{
+
+  if(LL_DMA_IsActiveFlag_TC6(DMA1))
+  {
+    LL_DMA_ClearFlag_GI6(DMA1);
+    /* Call function Reception complete Callback */
+    (*DMA1_ReceiveComplete_Callback)();
+  }
+  else if(LL_DMA_IsActiveFlag_TE6(DMA1))
+  {
+    /* Call Error function */
+    //USART_TransferError_Callback();
+  }
 }
 
 /******************************************************************************/
