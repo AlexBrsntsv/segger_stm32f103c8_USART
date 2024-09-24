@@ -53,6 +53,7 @@
       c_user_include_directories_c_only=""
       gcc_c_language_standard="c99"
       gcc_cplusplus_language_standard="c++17"
+      linker_printf_fp_enabled="Float"
       macros="STM32CubeF1_DIR=C:/stm32/STM32CubeF1" />
     <folder Name="CMSIS Files">
       <file file_name="STM32F1xx/Device/Include/stm32f10x.h" />
